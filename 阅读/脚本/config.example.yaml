@@ -1,0 +1,80 @@
+# evil-thesis 阅读子模块 · 检索脚本配置示例
+# 复制为 config.yaml 后修改
+
+# ----------------------------------------------------------------
+# Obsidian Vault 路径（可选，用于 PDF 下载路径推断；不设也能跑检索）
+# ----------------------------------------------------------------
+# 优先级：CLI --vault > 这里 > 环境变量 OBSIDIAN_VAULT_PATH
+# vault_path: "D:/MyVault"
+
+# ----------------------------------------------------------------
+# Semantic Scholar API
+# ----------------------------------------------------------------
+# 免费申请：https://www.semanticscholar.org/product/api#api-key
+# 不设 key 也可用，但速率限制更严（约 1 req/s）
+# 设置后：5000 req / 5 分钟
+# semantic_scholar_api_key: "your-api-key-here"
+
+# 默认每次返回多少条
+semantic_scholar:
+  limit: 10              # 单次最多 100
+  fields:
+    - title
+    - authors
+    - year
+    - venue
+    - abstract
+    - citationCount
+    - influentialCitationCount
+    - externalIds
+    - openAccessPdf
+    - url
+
+# ----------------------------------------------------------------
+# arXiv API
+# ----------------------------------------------------------------
+arxiv:
+  max_results: 10
+  sort_by: "submittedDate"   # 可选 relevance / lastUpdatedDate / submittedDate
+  sort_order: "descending"   # ascending / descending
+  request_delay_seconds: 3   # 建议 >= 3 秒，避免限速
+
+# ----------------------------------------------------------------
+# 检索关键词组合（示例 — 改成你自己的）
+# ----------------------------------------------------------------
+# 每组对应一个检索 query。组名只是给你看的，对脚本无影响。
+keyword_groups:
+
+  example_facet_concept_method:
+    description: "概念-方法对：核心概念 × 核心方法"
+    queries:
+      - '"distant viewing" "vision-language model"'
+      - '"distant viewing" "multimodal"'
+      - '"computational visual humanities" "multimodal AI"'
+    apis:
+      - semantic_scholar
+      - arxiv
+
+  example_facet_authors:
+    description: "已知作者扩展"
+    queries:
+      - 'Wevers Smits "computer vision" "digital humanities"'
+    apis:
+      - semantic_scholar
+
+  example_facet_critique:
+    description: "反向检索：找批评 / 限制讨论"
+    queries:
+      - '"computer vision" "limitations" "humanities"'
+      - '"AI-generated metadata" "archives" "bias"'
+    apis:
+      - semantic_scholar
+
+# ----------------------------------------------------------------
+# 排除关键词（可选）
+# ----------------------------------------------------------------
+# 标题命中以下任一关键词的候选会被打标，但不会自动删除
+# excluded_keywords:
+#   - "review"
+#   - "workshop"
+#   - "survey"

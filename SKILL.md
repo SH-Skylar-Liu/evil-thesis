@@ -51,7 +51,10 @@ metadata:
 |---|---|---|
 | 项目背景 | 给 LLM 加载你的研究上下文 | [项目背景/00_项目背景_INDEX.md](项目背景/00_项目背景_INDEX.md) |
 | 研究规划 | 把模糊想法变成可研究子问题；规划小论文/会议投稿 | [研究规划/00_研究规划_INDEX.md](研究规划/00_研究规划_INDEX.md) |
-| 阅读 | 读 PDF、关键词搜索、按反馈补文献 | [阅读/00_阅读_INDEX.md](阅读/00_阅读_INDEX.md) |
+| 阅读 | 读 PDF、按相关度（5★/4★/3★）分模板、关键词组合生成、Semantic Scholar / arXiv 检索、批次整理、笔记内检索、多笔记关系归纳 | [阅读/00_阅读_INDEX.md](阅读/00_阅读_INDEX.md) |
+| · 阅读模板 | 5★/4★ 增强版 + 3★ 轻量版 reading note 模板 | [阅读/模板/](阅读/模板/) |
+| · 阅读脚本 | Python 检索脚本（Semantic Scholar / arXiv） | [阅读/脚本/](阅读/脚本/) |
+| · Vault 起步包 | 给 fork 用户的最小可用 Obsidian Vault（含 2 篇示范笔记） | [阅读/Obsidian_Vault_起步包/](阅读/Obsidian_Vault_起步包/) |
 | 写作 | 章节起草、润色、引用格式、章节拼装 | [写作/00_写作_INDEX.md](写作/00_写作_INDEX.md) |
 | · Methodology | 方法论章节的完整六步 workflow | [写作/Methodology/00_Methodology_INDEX.md](写作/Methodology/00_Methodology_INDEX.md) |
 | · Results | 结果/分析章节的叙事化写作 | [写作/Results/00_Results_INDEX.md](写作/Results/00_Results_INDEX.md) |

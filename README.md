@@ -42,13 +42,22 @@
 ## 目录结构
 
 ```
-thesis-skills/
+evil-thesis/
 ├── SKILL.md                 # 入口 + 路由 + 全局机制
 ├── README.md                # 你正在看
 ├── 使用指南.md              # 怎么用、怎么串、看到标记怎么办
 ├── 项目背景/                # 给 LLM 加载研究上下文
 ├── 研究规划/                # 子问题规划 + 论文/会议选题规划
-├── 阅读/                    # 直接读 / 关键词搜索 / 按反馈补文献
+├── 阅读/                    # Reading workflow 子模块（整合自 evilread skill）
+│   ├── 00_阅读_INDEX.md
+│   ├── 01–03_*_prompt.md   # 直接读 / 关键词搜索 / 按反馈补文献
+│   ├── 04_*5星4星3星*.md    # 按相关度分模板写 reading note
+│   ├── 05_关键词组合*.md    # 把 gap 拆成可执行 query
+│   ├── 06_Semantic_Scholar_arXiv_*.md  # API 检索协议
+│   ├── 07_批次整理*.md      # Claude → Codex 交接
+│   ├── 模板/                # 5★/4★ 增强版 + 3★ 轻量版 reading note 模板
+│   ├── 脚本/                # search_semantic_scholar.py / search_arxiv.py
+│   └── Obsidian_Vault_起步包/   # 最小可用 Vault + 2 篇示范笔记
 ├── 写作/
 │   ├── 通用工具/            # 学术英文润色、摘要&Intro、引用格式、章节拼装
 │   ├── Methodology/         # 方法论章节六步 workflow
@@ -89,6 +98,8 @@ thesis-skills/
 ## 致谢与来源
 
 本工具包整理自一位 PhD 研究者的 prompt 库，已**剔除博士专属流程**、改写**项目专属背景**为占位符。核心机制（盲评预承诺、FINER、Devil's Advocate、知识隔离、回归追踪）思路借鉴 academic-research-skills（Cheng-I Wu, CC-BY-NC 4.0）与 ARS reviewer skill 等公开工程实践。
+
+**阅读子模块**（`阅读/`）整合自 [juliye2025/evil-read-arxiv](https://github.com/juliye2025/evil-read-arxiv) 的 Claude Code skills，但只保留 reading note 工作流真正用得到的功能：API 检索 + 按相关度分模板 + 批次整理。剥离了"每日自动推荐"和"知识图谱可视化"——这些功能放大了 LLM 幻觉风险，且大部分用户用不到。详见 [阅读/00_阅读_INDEX.md](阅读/00_阅读_INDEX.md)。
 
 ## License
 

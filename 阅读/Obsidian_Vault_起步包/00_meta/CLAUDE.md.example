@@ -1,0 +1,126 @@
+# Claude 全局上下文（reading workflow Vault）
+
+复制本文件为 `CLAUDE.md`（去掉 .example），按你的研究情况修改占位符。
+
+如果你在 Claude Code / Claude Desktop 里跑 reading prompt，Claude 会优先读取这个文件作为全局上下文。
+
+---
+
+# 用户身份
+
+- **姓名**：[YOUR_NAME] —— [可选：常用昵称]
+- **身份**：[YOUR_DEGREE / ROLE]，例如 PhD student / Master's student / Independent researcher
+- **机构**：[YOUR_INSTITUTION]
+- **领域**：[YOUR_FIELD]，例如 Media Studies, Digital Humanities, Computer Science
+- **工作语言**：中文（日常）, 英语（学术写作）—— 按需调整
+- **操作系统**：[Windows / macOS / Linux]
+
+---
+
+# 研究概览
+
+**核心方向**：[一句话描述你的研究方向]
+例如：AI-assisted analysis of [data type] for [field application]
+
+**主项目**：[当前主要项目名 + 一句话目标]
+
+> 具体项目细节、文献库结构、术语表 → 看 Vault 内对应路径
+
+---
+
+# 思维框架与回答规范
+
+## 第一性原理
+
+运用第一性原理思考，不要假设我完全清楚自己的目标。保持审慎，从原始需求和问题出发。
+
+- 目标模糊时：停下讨论，澄清后再行动
+- 目标清晰但路径非最优：直接建议更短、低成本的办法
+
+## 语言与写作
+
+**日常交流**：中文为主。
+
+**学术写作输出**：
+- 英文为主，附中文翻译：英文段落 → `**中文：**` 精准转述
+- 引用必须可核查；不确定用 hedging（"appears to argue", "suggests", "may"）
+- 不用夸大评价词（"foundational", "definitive", "groundbreaking"）
+
+---
+
+# Reading workflow 配置
+
+## Vault 路径
+
+- 本 Vault 根：[YOUR_VAULT_PATH]，例如 `D:/MyReadingVault`
+- 来源卡目录：`01_Sources/`
+- 精读笔记目录：`02_Reading_Notes/`
+- 模板目录：`99_Templates/`
+- 进度跟踪：`_Tools/reading-workflow-progress.md`
+
+## 模板挂载
+
+写 reading note 时，按相关度选模板：
+
+- 5★/4★ → `99_Templates/TPL_Reading_Note_5星4星.md`
+- 3★ → `99_Templates/TPL_Reading_Note_3星.md`
+- 未读来源 → `99_Templates/TPL_Source_Note.md`
+
+## reading note 行为约束
+
+读论文 + 写 reading note 时：
+
+- 一次只处理一篇
+- 只生成正式 reading note + Single Reading Report + Upgrade Candidate
+- 不改 source note 的 read_status（留给 Codex / 批次整理）
+- 不补已有笔记的 wikilinks（同上）
+- 不更新 reading index / project map
+- 不自动连读下一篇
+- 不写没有实际读到的内容
+
+## 相关度判定（必须先做）
+
+- 5★：核心文献，直接支撑主线
+- 4★：高相关，可进入论证或方法框架
+- 3★：中等相关，背景 / 对话 / 脚注级
+- 2★ 及以下：只做简短说明，不写长笔记
+
+判定后先停下让我确认相关度，再用对应模板写。
+
+## 防幻觉护栏
+
+1. **知识隔离**：只依据眼前 PDF 文本；凭记忆得出的内容标 `[来自记忆，需核实]`
+2. **不虚构**：不编造 DOI / 页码 / 引用 / 作者观点；不确定写 `[需核实]`
+3. **Quotable lines**：必须是实际原文摘录，不是 paraphrase
+4. **核心发现带出处**：尽量标 section / 页码；区分"论文明确说的" vs "我的概括"
+
+---
+
+# Skill 调用规则
+
+调用任何 Claude Code skill 前，先确认是否真的需要：
+
+- `paper-search`：在已有笔记中搜索 → 用 Obsidian 内置搜索通常更快
+- `paper-analyze`：单篇分析 → 已被 evil-thesis/阅读/04 prompt 覆盖；优先用 prompt 不用 skill
+- `start-my-day`：每日推荐 → 大部分用户不需要；如果要装，参考 evil-read-arxiv 原 skill
+
+---
+
+# 输出固定格式
+
+每次 Claude 完成单篇阅读后，必须固定输出：
+
+```text
+## Single Reading Report
+completed: [[文件名]]
+dialogue: [[文献A]], [[文献B]]
+unsure: none / [说明]
+
+## Upgrade Candidate
+candidate_type: stay / argument_block / concept / method
+confidence: low / medium / high
+reason: [一句话]
+```
+
+`Upgrade Candidate` 只是候选判断，不是最终结构定稿。
+证据不足时优先写 `candidate_type: stay`。

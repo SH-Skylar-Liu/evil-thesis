@@ -1,0 +1,57 @@
+# Reading Workflow Progress
+
+复制本文件为 `reading-workflow-progress.md`（去掉 .example），用来跨会话跟踪 reading 队列。
+
+跨会话恢复方式（在 Claude / ChatGPT 里）：
+
+> 直接说："继续 reading workflow，从进度表开始。"
+
+LLM 会：
+
+1. 读这个文件，找第一个 ⬜ 未读条目
+2. 按你给的 PDF 路径定位文件
+3. 用 evil-thesis/阅读/04 prompt 写一篇 reading note
+4. 把对应条目标 ✅，更新 Obsidian 笔记链接
+
+---
+
+## 当前批次：[BATCH_NAME] — 用一个有意义的批次名（例如 "Methodology Chapter Gap Fill 2026-Q2"）
+
+| # | 作者-年 | 标题（简） | PDF 路径或 DOI | 状态 | Reading Note |
+|---|---|---|---|---|---|
+| 1 | Smith 2024 | Some Important Paper | `D:/MyVault/PDFs/smith_2024.pdf` | ⬜ | — |
+| 2 | Jones 2023 | Other Paper | DOI: 10.xxxx/yyy | ⬜ | — |
+| 3 | Brown 2022 | Third Paper | `D:/MyVault/PDFs/brown_2022.pdf` | ✅ 完成 | [[Brown_2022_Third_Paper]] |
+
+状态符号：
+- ⬜ 未读
+- 🔄 进行中
+- ✅ 完成
+- ⏭️ 跳过（理由要写在 note 列）
+- ❓ 待澄清（缺 PDF / 缺 DOI / 主题不明）
+
+---
+
+## 历史批次
+
+### Batch [name] — completed [YYYY-MM-DD]
+
+简短记录这批次读了什么、产生了哪些 Upgrade Candidate、哪些进入了 argument block。
+
+---
+
+## 使用建议
+
+- 一个批次最多 8-10 篇 — 超过就拆批次
+- 一周整理一次：把 ✅ 完成的条目交给 `07_批次整理_Codex_prompt.md`
+- 不要让进度表无限增长 — 完成的批次归档到 "历史批次"，主表只留当前活跃批次
+- ❓ 待澄清 是个真状态，不是 TODO 转储 — 看到 ❓ 就停下处理，不要绕过
+
+## 给 LLM 的固定行为
+
+如果用户说"继续 reading workflow"：
+
+1. 读本文件，找第一个 ⬜ 条目
+2. 不要自己挑顺序，按表顺序来
+3. 读完一篇后更新本表 + Reading Note 链接列
+4. 不要自动读下一篇 — 等用户确认
