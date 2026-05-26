@@ -1,4 +1,4 @@
-# evil-thesis-skills 研究生论文邪修工具箱
+# Evil-thesis-skills 研究生论文邪修工具箱
 
 研究生毕业论文 / 学位论文工作流工具包。一套**按真实任务分区**的 prompt 库，覆盖文献阅读、研究规划、章节写作（Introduction → Conclusion）、与结构化学术审阅。
 
